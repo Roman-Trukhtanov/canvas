@@ -19,16 +19,22 @@ ctx.strokeRect(startPointX, startPointY, fillWidth, fillHeight);
 ctx.fillRect(startPointX, startPointY, fillWidth, fillHeight);
 
 /* Объявляет нужные переменные для шахматной доски */
-var chessBlockWidth = fillWidth / 8;
-var chessBlockHeight = fillHeight / 8;
+var NUMBERS_OF_BLOCKS = 9;
+
+var chessBlockWidth = fillWidth / NUMBERS_OF_BLOCKS;
+var chessBlockHeight = fillHeight / NUMBERS_OF_BLOCKS;
 
 var chessOffsetPointX = chessBlockWidth;
 var chessOffsetPointY = chessBlockHeight;
 
 /* Рисует шахматную доску на канвасе */
-for (var i = 0; i < 8; i += 2) {
-  for (var j = 0; j < 8; j += 2) {
+for (var i = 0; i < NUMBERS_OF_BLOCKS; i += 2) {
+  for (var j = 0; j < NUMBERS_OF_BLOCKS; j += 2) {
+
     ctx.clearRect(startPointX + i * chessOffsetPointX, startPointY + j * chessOffsetPointY, chessBlockWidth, chessBlockHeight);
-    ctx.clearRect(startPointX + (i + 1) * chessOffsetPointX, startPointY + (j + 1) * chessOffsetPointY, chessBlockWidth, chessBlockHeight);
+
+    if (j !== NUMBERS_OF_BLOCKS - 1 && i !== NUMBERS_OF_BLOCKS - 1) {
+      ctx.clearRect(startPointX + (i + 1) * chessOffsetPointX, startPointY + (j + 1) * chessOffsetPointY, chessBlockWidth, chessBlockHeight);
+    }
   }
 }
